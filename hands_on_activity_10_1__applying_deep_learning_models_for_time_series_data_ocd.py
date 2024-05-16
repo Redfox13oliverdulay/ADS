@@ -44,8 +44,10 @@ T: Temperature in °C.
 <br>
 """
 
-from google.colab import drive
-drive.mount('/content/drive')
+import streamlit as st
+import pandas as pd
+
+
 
 # Import necessary libraries
 import pandas as pd
@@ -64,7 +66,22 @@ from tensorflow.keras.layers import Dense, Flatten, Conv1D, GlobalAveragePooling
 """**LOAD AND PROCESS THE DATASET**"""
 
 # Load the dataset
-data_path = '/content/drive/MyDrive/Advance_Data_Science/May 4/AirQualityUCI.csv'
+# Set the path to the CSV file (adjust the path as necessary for your environment)
+data_path = 'https://drive.google.com/file/d/1X1t6EEAcjwpcoJMMtgBu51kwjuF1YEuQ/view?usp=drive_link'
+
+@st.cache  # This decorator caches the data so the file isn't reloaded on every interaction
+def load_data(path):
+    data = pd.read_csv(path, sep=';')
+    data.drop(columns=['Unnamed: 15', 'Unnamed: 16'], inplace=True)
+    cols_to_convert = ['CO(GT)', 'C6H6(GT)', 'T', 'RH', 'AH']
+    data[cols_to_convert] = data[cols_to_convert].apply(lambda x: x.str.replace(',', '.').astype(float))
+    return data
+
+data = load_data(data_path)
+
+# You can display the DataFrame in Streamlit using:
+st.write(data)
+
 data = pd.read_csv(data_path, sep=';')
 data.drop(columns=['Unnamed: 15', 'Unnamed: 16'], inplace=True)
 cols_to_convert = ['CO(GT)', 'C6H6(GT)', 'T', 'RH', 'AH']
