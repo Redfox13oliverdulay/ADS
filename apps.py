@@ -11,7 +11,7 @@ Original file is located at
 import streamlit as st
 import numpy as np
 import requests
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from io import BytesIO
 
 # URL of the model on GitHub
