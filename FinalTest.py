@@ -46,7 +46,7 @@ label_map = {
 }
 
 # UI layout
-st.title('Fashion MNIST Prediction App by Oliver Dulay')
+st.title('Fashion MNIST Prediction App by OCD')
 st.write('Upload an image and the app will predict the clothing category.')
 
 # Sidebar for user inputs
