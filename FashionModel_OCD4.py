@@ -52,7 +52,7 @@ if uploaded_file is not None:
         6: "Shirt",
         7: "Sneaker",
         8: "Bag",
-        9: "Ankle boot"
+        9: "Ankle boots"
     }
     prediction = import_and_predict(image, model)
     if prediction is not None:
