@@ -15,16 +15,20 @@ import requests
 import os
 
 # Function to download the model from GitHub
-def download_model():
-    url = "https://github.com/yourusername/yourrepository/raw/main/final_model.h5"  # Replace with your actual GitHub URL
-    local_filename = "final_model.h5"
-    if not os.path.exists(local_filename):
-        with requests.get(url, stream=True) as r:
-            r.raise_for_status()
-            with open(local_filename, 'wb') as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    f.write(chunk)
-    return local_filename
+def import_and_predict(image_data, model):
+    size = (28, 28)  # Target image size for Fashion MNIST
+    try:
+        # Use Image.Resampling.LANCZOS for high-quality downsampling
+        image = ImageOps.fit(image_data, size, Image.Resampling.LANCZOS)
+        image = ImageOps.grayscale(image)  # Convert image to grayscale
+        img = np.asarray(image)
+        img = img / 255.0  # Normalize the image
+        img_reshape = img[np.newaxis, ..., np.newaxis]  # Add batch and channel dimensions
+        prediction = model.predict(img_reshape)
+        return prediction
+    except Exception as e:
+        st.error(f"Error processing image: {e}")
+        return None
 
 # Revised load_model function with error handling
 def load_model():
