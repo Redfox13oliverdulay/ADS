@@ -14,7 +14,7 @@ from tensorflow.keras.models import load_model
 
 # Attempt to load the model from a specified path
 try:
-    model = load_model('/content/drive/MyDrive/Advance_Data_Science/Final Exam/final_model.h5')
+    model = load_model('https://github.com/Redfox13oliverdulay/ADS/blob/main/final_model.h5')
 except Exception as e:
     st.error(f"Failed to load the model: {str(e)}")
     model = None  # Ensure model is set to None if load fails
