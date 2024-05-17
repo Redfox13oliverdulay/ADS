@@ -14,7 +14,7 @@ import streamlit as st
 from tensorflow.keras.models import load_model
 
 # Load the model (ensure the path is correct and accessible)
-model = load_model('/content/drive/MyDrive/Advance_Data_Science/Final Exam/final_model.h5')
+model = load_model('https://github.com/Redfox13oliverdulay/ADS/blob/main/final_model.h5')
 
 def import_and_predict(image_data, model):
     size = (28, 28)  # Target image size for Fashion MNIST
