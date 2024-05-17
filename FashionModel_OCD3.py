@@ -44,18 +44,19 @@ if model is not None:
     file = st.file_uploader("Choose a fashion item photo from your computer", type=["jpg", "png"])
 
     def import_and_predict(image_data, model):
-        size = (28, 28)  # Target image size for Fashion MNIST
-        try:
-            image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
-            image = ImageOps.grayscale(image)  # Convert image to grayscale
-            img = np.asarray(image)
-            img = img / 255.0  # Normalize the image
-            img_reshape = img[np.newaxis, ..., np.newaxis]  # Add batch and channel dimensions
-            prediction = model.predict(img_reshape)
-            return prediction
-        except Exception as e:
-            st.error(f"Error processing image: {e}")
-            return None
+    size = (28, 28)  # Target image size for Fashion MNIST
+    try:
+        # Use Image.Resampling.LANCZOS for high-quality downsampling
+        image = ImageOps.fit(image_data, size, Image.Resampling.LANCZOS)
+        image = ImageOps.grayscale(image)  # Convert image to grayscale
+        img = np.asarray(image)
+        img = img / 255.0  # Normalize the image
+        img_reshape = img[np.newaxis, ..., np.newaxis]  # Add batch and channel dimensions
+        prediction = model.predict(img_reshape)
+        return prediction
+    except Exception as e:
+        st.error(f"Error processing image: {e}")
+        return None
 
     if file is None:
         st.text("Please upload an image file.")
