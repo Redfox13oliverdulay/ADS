@@ -15,7 +15,7 @@ from keras.models import load_model
 from io import BytesIO
 
 # URL of the model on GitHub
-model_url = 'https://github.com/yourusername/yourrepo/raw/main/iris_model.h5'
+model_url = 'https://github.com/Redfox13oliverdulay/ADS/blob/main/iris_model.h5'
 
 # Function to load model from a URL
 def load_model_from_url(url):
