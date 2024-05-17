@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1FbWLXJL55rpzmsCBXd9BeVRasgkbPAQU
 """
 
-!pip install streamlit pyngrok
-
 import streamlit as st
 import tensorflow as tf
 from PIL import Image, ImageOps
