@@ -48,7 +48,7 @@ if model is not None:
     file = st.file_uploader("Choose a fashion item photo from your computer", type=["jpg", "png"])
 
     def import_and_predict(image_data, model):
-    size = (28, 28)  # Target image size for Fashion MNIST
+        size = (28, 28)  # Target image size for Fashion MNIST
     try:
         # Use Image.Resampling.LANCZOS for high-quality downsampling
         image = ImageOps.fit(image_data, size, Image.Resampling.LANCZOS)
