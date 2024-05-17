@@ -25,7 +25,7 @@ def import_and_predict(image_data, model):
         img = img / 255.0  # Normalize the image
         img_reshape = img[np.newaxis, ..., np.newaxis]  # Add batch and channel dimensions
         prediction = model.predict(img_reshape)
-        return prediction
+    return prediction
     except Exception as e:
         st.error(f"Error processing image: {e}")
         return None
